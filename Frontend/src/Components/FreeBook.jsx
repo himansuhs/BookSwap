@@ -4,10 +4,25 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Cards from "./Cards";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function FreeBook() {
   //filter kiya data matlab jo free wale book honge vo show honge
-  const filterData = list.filter((data) => data.category === "free");
+  // const filterData = list.filter((data) => data.category === "free");
+  const [book, setBook] = useState([]);
+  useEffect(() => {
+    const getBook = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/book");
+        console.log(res.data);
+        setBook(res.data.filter((data) => data.category === "free"));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBook();
+  }, []);
 
   //scroll wala function apply kiya
   var settings = {
@@ -60,7 +75,7 @@ function FreeBook() {
           <Slider {...settings}>
             {/* //map kiya ek ek free wale data se and then prop use kiya and vo
             data pass kiya tho child component */}
-            {filterData.map((data) => (
+            {book.map((data) => (
               <Cards data={data} key={data.id}></Cards>
             ))}
           </Slider>
