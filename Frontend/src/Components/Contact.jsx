@@ -3,8 +3,8 @@ import React from "react";
 function Contact() {
   return (
     <>
-      <div className="max-w-md mx-auto mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+      <div className="max-w-xl mx-auto mt-8 py-2 px-1">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Contact Us</h2>
         <form className="space-y-4">
           <div>
             <label htmlFor="name" className="block font-medium">
